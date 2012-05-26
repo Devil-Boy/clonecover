@@ -1,0 +1,21 @@
+#
+# CloneCover Configuration
+#
+
+# Universal Disguise
+#	This is the player name of the disguise
+#	you wish every player to take up upon
+#	joining the server.
+disguiseTo=Herobrine
+
+# Disguise Turn-Off
+#	Here you list the chat sequence (separated
+#	by comma) through which players can
+#	undisguise themselves.
+cancelCommands=/done,/lol
+
+# Disguise Notification
+#	This is the output players will see if
+#	they are disguised upon joining.
+#	To disable this, use: none
+disguiseNotification=none
