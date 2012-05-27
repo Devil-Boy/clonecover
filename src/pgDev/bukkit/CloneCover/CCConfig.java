@@ -157,7 +157,15 @@ public class CCConfig {
     		out.write("#	Here you list the chat sequence (separated\r\n");
     		out.write("#	by comma) through which players can\r\n");
     		out.write("#	undisguise themselves.\r\n");
-    		out.write("cancelCommands=" + cancelCommands + "\r\n");
+    		String canCom = null;
+    		for (String com : cancelCommands) {
+    			if (canCom == null) {
+    				canCom = com;
+    			} else {
+    				canCom = canCom + "," + com;
+    			}
+    		}
+    		out.write("cancelCommands=" + canCom + "\r\n");
     		out.write("\r\n");
     		out.write("# Disguise Notification\r\n");
     		out.write("#	This is the output players will see if\r\n");
