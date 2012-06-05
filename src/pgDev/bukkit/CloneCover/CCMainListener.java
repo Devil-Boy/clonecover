@@ -3,7 +3,7 @@ package pgDev.bukkit.CloneCover;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import pgDev.bukkit.DisguiseCraft.Disguise;
@@ -32,9 +32,10 @@ public class CCMainListener implements Listener {
 	}
 	
 	@EventHandler
-	public void onChat(PlayerChatEvent event) {
-		for (String command : plugin.pluginSettings.cancelCommands) {
+	public void onChat(PlayerCommandPreprocessEvent event) {
+		for (String command : plugin.pluginSettings.cancelCommands.split(",")) {
 			if (event.getMessage().startsWith(command)) {
+				event.setCancelled(true);
 				if (plugin.dcAPI.isDisguised(event.getPlayer())) {
 					plugin.dcAPI.undisguisePlayer(event.getPlayer());
 					event.getPlayer().sendMessage(ChatColor.GOLD + "You are no longer a clone.");

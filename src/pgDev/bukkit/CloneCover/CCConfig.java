@@ -17,7 +17,7 @@ public class CCConfig {
 	
 	// List of Config Options
 	String disguiseTo;
-	String[] cancelCommands;
+	String cancelCommands;
 	String disguiseNotification;
 	
 	public CCConfig(Properties p, final CloneCover plugin) {
@@ -26,7 +26,7 @@ public class CCConfig {
 		
 		// Grab values here
 		disguiseTo = getString("disguiseTo", "Herobrine");
-		cancelCommands = getString("cancelCommands","/done,/lol").split(",");
+		cancelCommands = getString("cancelCommands","/done,/lol");
 		disguiseNotification = getString("disguiseNotification", "none");
 	}
 	
@@ -157,15 +157,7 @@ public class CCConfig {
     		out.write("#	Here you list the chat sequence (separated\r\n");
     		out.write("#	by comma) through which players can\r\n");
     		out.write("#	undisguise themselves.\r\n");
-    		String canCom = null;
-    		for (String com : cancelCommands) {
-    			if (canCom == null) {
-    				canCom = com;
-    			} else {
-    				canCom = canCom + "," + com;
-    			}
-    		}
-    		out.write("cancelCommands=" + canCom + "\r\n");
+    		out.write("cancelCommands=" + cancelCommands + "\r\n");
     		out.write("\r\n");
     		out.write("# Disguise Notification\r\n");
     		out.write("#	This is the output players will see if\r\n");
