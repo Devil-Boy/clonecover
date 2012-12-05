@@ -6,7 +6,8 @@ import org.bukkit.event.*;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import pgDev.bukkit.DisguiseCraft.Disguise;
+import pgDev.bukkit.DisguiseCraft.disguise.Disguise;
+import pgDev.bukkit.DisguiseCraft.disguise.DisguiseType;
 
 public class CCMainListener implements Listener {
 	final CloneCover plugin;
@@ -18,8 +19,8 @@ public class CCMainListener implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		if (!plugin.hasPermissions(player, "clonecover.exempt")) {
-			Disguise disguise = new Disguise(plugin.dcAPI.newEntityID(), plugin.pluginSettings.disguiseTo, null);
+		if (!player.hasPermission("clonecover.exempt")) {
+			Disguise disguise = new Disguise(plugin.dcAPI.newEntityID(), plugin.pluginSettings.disguiseTo, DisguiseType.Player);
 			if (plugin.dcAPI.isDisguised(player)) {
 				plugin.dcAPI.changePlayerDisguise(player, disguise);
 			} else {

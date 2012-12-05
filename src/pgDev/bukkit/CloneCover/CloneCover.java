@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,16 +11,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pgDev.bukkit.DisguiseCraft.DisguiseCraft;
 import pgDev.bukkit.DisguiseCraft.api.DisguiseCraftAPI;
 
-import com.nijiko.permissions.PermissionHandler;
-import com.nijikokun.bukkit.Permissions.Permissions;
-
 public class CloneCover extends JavaPlugin {
 	// File Locations
     static String pluginMainDir = "./plugins/CloneCover";
     static String pluginConfigLocation = pluginMainDir + "/CloneCover.cfg";
-    
-    // Permissions support
-    static PermissionHandler Permissions;
     
     // DisguiseCraft API
     DisguiseCraftAPI dcAPI;
@@ -67,7 +59,6 @@ public class CloneCover extends JavaPlugin {
 		pm.registerEvents(mainListener, this);
 		
 		// Integrations!
-        setupPermissions();
         setupDisguiseCraft();
 		
 		// Output to console
@@ -77,26 +68,6 @@ public class CloneCover extends JavaPlugin {
     
     public void onDisable() {
     	System.out.println("CloneCover disabled!");
-    }
-    
- // Permissions Methods
-    private void setupPermissions() {
-        Plugin permissions = this.getServer().getPluginManager().getPlugin("Permissions");
-
-        if (Permissions == null) {
-            if (permissions != null) {
-                Permissions = ((Permissions)permissions).getHandler();
-            } else {
-            }
-        }
-    }
-    
-    public boolean hasPermissions(Player player, String node) {
-        if (Permissions != null) {
-        	return Permissions.has(player, node);
-        } else {
-            return player.hasPermission(node);
-        }
     }
     
     // DisguiseCraft API Setup
